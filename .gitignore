@@ -1,0 +1,9 @@
+.vimrc
+.vim/
+compile_commands.json
+bin/
+obj/
+
+*.tmp
+*.obj
+*.o 
