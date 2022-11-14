@@ -27,15 +27,15 @@ SHARED_PATH := $(OBJ_DIR)/static
 EXAMPLEOBJS := $(patsubst $(EXAMPLE_DIR)/%.cpp, $(EXAMPLE_OBJDIR)/%.o, $(EXAMPLESRCS))
 EXAMPLEEXES := $(patsubst $(EXAMPLE_DIR)/%.cpp, $(EXAMPLE_DIR)/%.out, $(EXAMPLESRCS))
 
-all: $(SHAREDOBJ) setup testfiles
-	#$(dirguard)
+all: $(SHAREDOBJ) testfiles
 	@echo ---- Generating $^ ---
 
 $(SHAREDOBJ): $(OBJS)
 	@mkdir -p $(SHARED_PATH)
+	@mkdir -p $(EXAMPLE_OBJDIR)
 	@echo ---- Generating Shared object: $^ ---
-	$(CC) $(CCFLAGS) -shared -o $(SHARED_PATH)/$@ $^ -lm
-	#mv $(SHAREDOBJ) /usr/lib
+	$(CC) $(CCFLAGS) -shared -o $@ $^ -lm
+	@cp $@ $(EXAMPLE_OBJDIR)/
 
 testfiles: $(EXAMPLEEXES)
 
@@ -47,12 +47,12 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
 $(EXAMPLE_OBJDIR)/%.o: $(EXAMPLE_DIR)/%.cpp
 	@echo ---- Compiling $^ ----
 	@mkdir -p $(@D)
-	$(CC) $(CCFLAGS) $(INCLUDE) -c -fPIC $< -o $@
+	$(CC) $(CCFLAGS) $(INCLUDE) -c $^ -o $@
 	
 $(EXAMPLE_DIR)/%.out: $(EXAMPLE_OBJDIR)/%.o
 	@echo ---- Linking $^ ----
 	@mkdir -p $(@D)
-	$(CC) $(CCFLAGS) -o $@ $^ -L$(SHARED_PATH) -lsktui -lm 
+	$(CC) $(CCFLAGS) -o $@ $^ -L. -lsktui -lm 
 
 setup:
 	@mkdir -p $(LOG_DIR)
