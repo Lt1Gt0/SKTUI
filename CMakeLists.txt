@@ -32,6 +32,8 @@ if(SKTUI_BUILD_TESTS)
     add_subdirectory(tests)
 endif()
 
+include(cmake/iwyu.cmake)
+
 if(SKTUI_ENABLE_INSTALL)
     include(cmake/sktui_install.cmake)
 endif()
