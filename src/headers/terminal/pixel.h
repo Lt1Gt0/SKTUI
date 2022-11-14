@@ -2,11 +2,9 @@
 #ifndef _SKTUI_PIXEL_H
 #define _SKTUI_PIXEL_H
 
-namespace SKTUI
+namespace SKTUI 
 {
-    struct Pixel {
-
-    };
-}
+    struct Pixel {};
+} 
 
 #endif // _SKTUI_PIXEL_H

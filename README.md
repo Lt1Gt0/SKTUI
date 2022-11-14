@@ -3,7 +3,7 @@
 ## Building
 
 ```bash
-mkdir build && cd build && cmake .. && make
+make
 ```
 
-This will make the test examples inside of `build/tests`. These files are executable for testing different features
+If you want to see/execute example files, they will be located in `examples/*.out` just run `./<example>.out` depending on which file you want to run 

@@ -1,18 +1,7 @@
-CMakeLists.txt.user
-CMakeCache.txt
-CMakeFiles
-CMakeScripts
-Testing
-Makefile
-cmake_install.cmake
-install_manifest.txt
-compile_commands.json
-CTestTestfile.cmake
-_deps
-
 .vimrc
 .vim/
 .vscode/
+.ccls-cache/
 compile_commands.json
 obj/
 build/
@@ -20,3 +9,4 @@ bin/
 *.tmp
 *.o
 *.bin
+*.out

@@ -1,6 +1,6 @@
 #include "terminal/pixel.h"
 
-namespace SKTUI
+namespace SKTUI 
 {
 
 }
