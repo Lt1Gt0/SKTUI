@@ -1,6 +1,5 @@
 #File Directory things (might be overkill idk yet)
 INCLUDE = -I$(SRC_DIR)/headers
-BUILD_DIR = bin
 SRC_DIR = src
 EXAMPLE_DIR = examples
 EXAMPLE_OBJDIR = examples/obj
@@ -15,49 +14,60 @@ LD = ld
 LDFLAGS = 
 
 rwildcard=$(foreach d,$(wildcard $(1:=/*)),$(call rwildcard,$d,$2) $(filter $(subst *,%,$2),$d))
+dirguard = $(mkdir -p $(@D))
 
 #Essential files and groups
 SRCS := $(call rwildcard, $(SRC_DIR), *.cpp)
 EXAMPLESRCS := $(call rwildcard, $(EXAMPLE_DIR), *.cpp)
 OBJS := $(patsubst $(SRC_DIR)/%.cpp, $(OBJ_DIR)/%.o, $(SRCS))
+
+SHAREDOBJ := libsktui.so
+SHARED_PATH := $(OBJ_DIR)/static
+
 EXAMPLEOBJS := $(patsubst $(EXAMPLE_DIR)/%.cpp, $(EXAMPLE_OBJDIR)/%.o, $(EXAMPLESRCS))
 EXAMPLEEXES := $(patsubst $(EXAMPLE_DIR)/%.cpp, $(EXAMPLE_DIR)/%.out, $(EXAMPLESRCS))
 
-all: $(OBJS) testfiles 
-	@mkdir -p $(LOG_DIR)
-	@mkdir -p $(@D)
-	@mkdir -p $(REDIRECT_DIR)
+all: $(SHAREDOBJ) setup testfiles
+	#$(dirguard)
 	@echo ---- Generating $^ ---
 
-testfiles: $(EXAMPLEEXES)
+$(SHAREDOBJ): $(OBJS)
+	@mkdir -p $(SHARED_PATH)
+	@echo ---- Generating Shared object: $^ ---
+	$(CC) $(CCFLAGS) -shared -o $(SHARED_PATH)/$@ $^ -lm
+	#mv $(SHAREDOBJ) /usr/lib
 
-$(OBJ): $(OBJS)
-	@echo ---- Linking $^ ----
-	@mkdir -p $(@D)
-	$(CC) $^ -o $@
+testfiles: $(EXAMPLEEXES)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
 	@echo ---- Compiling $^ ----
 	@mkdir -p $(@D)
-	$(CC) $(CCFLAGS) $(INCLUDE) -c $< -o $@
+	$(CC) $(CCFLAGS) $(INCLUDE) -fPIC -c $< -o $@
 
 $(EXAMPLE_OBJDIR)/%.o: $(EXAMPLE_DIR)/%.cpp
 	@echo ---- Compiling $^ ----
 	@mkdir -p $(@D)
-	$(CC) $(CCFLAGS) $(INCLUDE) -c $< -o $@
+	$(CC) $(CCFLAGS) $(INCLUDE) -c -fPIC $< -o $@
 	
 $(EXAMPLE_DIR)/%.out: $(EXAMPLE_OBJDIR)/%.o
 	@echo ---- Linking $^ ----
 	@mkdir -p $(@D)
-	$(CC) $^ -o $@
+	$(CC) $(CCFLAGS) -o $@ $^ -L$(SHARED_PATH) -lsktui -lm 
+
+setup:
+	@mkdir -p $(LOG_DIR)
+	@mkdir -p $(SHARED_PATH)
+	@mkdir -p $(REDIRECT_DIR)
+	@mkdir -p $(SHARED_PATH)
 
 clean:
-	rm -rf $(BUILD_DIR)/
 	rm -rf $(OBJ_DIR)/
 	rm -rf $(REDIRECT_DIR)/
+	rm -rf $(SHARED_PATH)
 	rm -rf $(LOG_DIR)/
 	rm -rf $(EXAMPLE_OBJDIR)/
 	find . -name "*.out" -type f -delete
 	find . -name "*.o" -type f -delete
 	find . -name "*.bin" -type f -delete
 	find . -name "*.tmp" -type f -delete
+	find . -name "*.so" -type f -delete
