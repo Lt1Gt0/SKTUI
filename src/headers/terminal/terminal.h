@@ -8,6 +8,7 @@ namespace SKTUI
 {
     namespace Terminal
     {
+        void SetSignalHandlers();
         Dimension size(); 
     }
 }

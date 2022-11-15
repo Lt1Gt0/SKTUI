@@ -1,13 +1,16 @@
 #include <iostream>
-#include "terminal/terminal.h"
+#include "sktui.h"
+//#include "terminal/terminal.h"
 
 int main() {
     using namespace SKTUI;
     std::cout << "border test" << std::endl;
-    Dimension tSize = Terminal::size();
+    
+    SKTUI::Init();
 
-    std::cout << "Terminal Size X: " << tSize.X << "\n";
-    std::cout << "Terminal Size Y: " << tSize.Y << "\n";
+    while (1) {
+
+    }
 
     return 0;
 }

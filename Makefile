@@ -35,7 +35,9 @@ $(SHAREDOBJ): $(OBJS)
 	@mkdir -p $(EXAMPLE_OBJDIR)
 	@echo ---- Generating Shared object: $^ ---
 	$(CC) $(CCFLAGS) -shared -o $@ $^ -lm
-	@cp $@ $(EXAMPLE_OBJDIR)/
+	#@cp $@ $(EXAMPLE_OBJDIR)/
+	@cp $@ $(EXAMPLE_DIR)/
+	#@cp $@ .
 
 testfiles: $(EXAMPLEEXES)
 
@@ -52,7 +54,7 @@ $(EXAMPLE_OBJDIR)/%.o: $(EXAMPLE_DIR)/%.cpp
 $(EXAMPLE_DIR)/%.out: $(EXAMPLE_OBJDIR)/%.o
 	@echo ---- Linking $^ ----
 	@mkdir -p $(@D)
-	$(CC) $(CCFLAGS) -o $@ $^ -L. -lsktui -lm 
+	$(CC) $(CCFLAGS) -o $@ $^ -L$(EXAMPLE_DIR) -lsktui -lm 
 
 setup:
 	@mkdir -p $(LOG_DIR)

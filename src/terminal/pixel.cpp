@@ -2,5 +2,13 @@
 
 namespace SKTUI 
 {
+    Pixel::Pixel()
+    {
 
+    }
+   
+    Pixel::~Pixel()
+    {
+
+    }
 }
