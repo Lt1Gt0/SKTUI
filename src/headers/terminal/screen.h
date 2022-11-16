@@ -4,6 +4,8 @@
 
 #include "util.h"
 #include "terminal/pixel.h"
+#include "elements/elementbase.h"
+#include "elements/border.h"
 #include <vector>
 #include <string>
 
@@ -17,9 +19,12 @@ namespace SKTUI
         public:
             Screen();
             Screen(Dimension size);
+            Screen(Dimension size, bool borderVisible);
+
             ~Screen();
 
             void Loop();
+            void AddElement(ElementBase& element);
 
         protected:
             void preInit();
@@ -30,7 +35,10 @@ namespace SKTUI
             Dimension mSize;
             Vec<Vec<Pixel>> mPixels;
 
+            bool mBorderVisible;
+
         private:
+            Border mBorder;
     };
 }
 

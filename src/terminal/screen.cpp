@@ -9,12 +9,21 @@ namespace SKTUI
     Screen::Screen()
     {
         mSize = Terminal::size();
+        mBorderVisible = true;
         preInit();
     }
 
     Screen::Screen(Dimension size)
     {
         mSize = size;
+        mBorderVisible = false;
+        preInit();
+    }
+
+    Screen::Screen(Dimension size, bool borderVisible)
+    {
+        mSize = size;
+        mBorderVisible = borderVisible;
         preInit();
     }
 
@@ -28,16 +37,21 @@ namespace SKTUI
     {
         // Initialize enough size to fit the screen
         mPixels.reserve(mSize.Y);
+        mBorder = Border();
     }
 
     void Screen::Loop()
     {
-
-        Draw();
+        while (1) {
+            Draw();
+        }
     }
 
     void Screen::Draw()
     {
+        if (mBorderVisible)
+            mBorder.Draw();
+
         Print();
     }
 
