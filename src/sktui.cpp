@@ -3,12 +3,13 @@
 #include <iostream>
 #include <signal.h>
 #include <atomic>
+#include <sys/ioctl.h>
 
 
 namespace SKTUI
 {
     Terminal* Terminal::tInstance = new Terminal();
-    std::atomic_uint32_t Window::currentID;
+    std::atomic_int Window::currentID;
 
     static bool bSignalsHandled = false;
 
@@ -19,6 +20,18 @@ namespace SKTUI
         exit(-1);
     }
 
+    static void SigWinchHandler(int sig) 
+    {
+        winsize ws;
+
+        if (ioctl(STDOUT_FILENO, TIOCGWINSZ, &ws)) {
+            std::cerr << "Unable to handle window size change\nExiting..." << std::endl;
+            exit(-1);
+        }
+
+        Terminal::GetInstance()->SetSize({ws.ws_col, ws.ws_row});
+    }
+
     static void SetSignalHandlers()
     {
         if (bSignalsHandled) {
@@ -27,6 +40,7 @@ namespace SKTUI
         }
         
         signal(SIGINT, SigIntHandler);
+        signal(SIGWINCH, SigWinchHandler);
 
         bSignalsHandled = true;
     }
@@ -40,5 +54,8 @@ namespace SKTUI
     {
         Terminal* t = Terminal::GetInstance();
 
+        for (auto it = t->mWindows.begin(); it != t->mWindows.end(); it++) {
+            it->second.Loop();
+        }
     }
 }

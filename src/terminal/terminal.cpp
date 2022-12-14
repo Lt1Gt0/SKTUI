@@ -22,7 +22,6 @@ namespace SKTUI
     int Terminal::NewWindow() 
     {
         Window win = Window();
-        //mWindows[win.mID] = win;
         mWindows.insert({win.mID, win});
         return win.mID;
     }
@@ -30,7 +29,7 @@ namespace SKTUI
     void Terminal::RemoveWindow(int winID)
     {
         for (auto it = mWindows.begin(); it != mWindows.end(); it++) {
-            if (it->first == winID) {
+            if ((int)it->first == winID) {
                 it = mWindows.erase(it);
                 std::cout << "Found id: " << winID << "...\nRemoving...\n";
                 return;
@@ -39,32 +38,4 @@ namespace SKTUI
 
         std::cerr << "ID [" << winID << "] Not found, so there is nothing to delete\n";
     }
-
-    //std::vector<Window*> windows;
-
-    //namespace Terminal
-    //{
-        //Dimension size() 
-        //{
-            //winsize ws;
-            //if (ioctl(fileno(stdout), TIOCGWINSZ, &ws) == -1) {
-                //fprintf(stderr, "Unable to get terminal size");
-                //abort();
-            //}
-
-            //return {ws.ws_row, ws.ws_col};
-        //}
-
-        //void AddWindow(Window* win)
-        //{
-            //windows.push_back(win);
-        //}
-
-        //void Render()
-        //{
-            //for (Window* win : windows) {
-                //win->Loop();
-            //}
-        //}
-    //}
 }

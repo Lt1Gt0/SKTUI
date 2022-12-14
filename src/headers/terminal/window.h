@@ -18,9 +18,9 @@ namespace SKTUI
     class Window 
     {
         public:
-            uint32_t mID;
+            int mID;
 
-            static std::atomic_uint32_t currentID;
+            static std::atomic_int currentID;
 
             Window();
             Window(Dimension size);

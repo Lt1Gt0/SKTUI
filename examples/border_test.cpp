@@ -10,11 +10,7 @@ int main() {
 
     Terminal* term = Terminal::GetInstance();
     int win = term->NewWindow();
-    term->RemoveWindow(win);
-
-    //Terminal::AddWindow(&win);
-    
-    //Terminal::Render();
+    SKTUI::Render();
 
     return 0;
 }

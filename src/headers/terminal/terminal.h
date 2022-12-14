@@ -28,10 +28,11 @@ namespace SKTUI
             int NewWindow();
             void RemoveWindow(int winHandle);
 
+            std::unordered_map<uint32_t, Window> mWindows;
+
         private:
             static Terminal* tInstance;
             Dimension mSize;
-            std::unordered_map<uint32_t, Window> mWindows;
 
             Terminal()
             {
