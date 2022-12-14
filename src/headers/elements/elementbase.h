@@ -4,14 +4,14 @@
 
 namespace SKTUI 
 {
-    class ElementBase
-    {
-        public:
-            ElementBase(Window* win);
-            ~ElementBase();
+    //class ElementBase
+    //{
+        //public:
+            //ElementBase(Window* win);
+            //~ElementBase();
 
-            virtual void Draw();
-    };
+            //virtual void Draw();
+    //};
 }
 
 #endif // _SKTUI_ELEMENT_BASE_H

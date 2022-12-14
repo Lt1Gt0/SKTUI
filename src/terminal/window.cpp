@@ -6,9 +6,9 @@
 
 namespace SKTUI 
 {
-    Window::Window()
+    Window::Window() : mID(currentID++)
     {
-        mSize = Terminal::size();
+        mSize = Terminal::GetInstance()->GetSize();
         PreInit();
     }
 

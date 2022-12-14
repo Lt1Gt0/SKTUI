@@ -6,14 +6,15 @@
 
 int main() {
     using namespace SKTUI;
-    std::cout << "border test" << std::endl;
-    
     SKTUI::Init();
-    Window win = Window();
-    Terminal::AddWindow(&win);
-    
 
-    Terminal::Render();
+    Terminal* term = Terminal::GetInstance();
+    int win = term->NewWindow();
+    term->RemoveWindow(win);
+
+    //Terminal::AddWindow(&win);
+    
+    //Terminal::Render();
 
     return 0;
 }

@@ -6,6 +6,7 @@
 #include "terminal/window.h"
 
 #include <vector>
+#include <unordered_map>
 
 namespace SKTUI 
 {
@@ -22,14 +23,15 @@ namespace SKTUI
             Dimension GetSize();
             void SetSize(Dimension newSize);
 
+            /* Will return a new window handle */
+            //int AddWindow(Window* win);
+            int NewWindow();
+            void RemoveWindow(int winHandle);
+
         private:
             static Terminal* tInstance;
             Dimension mSize;
-            std::vector<Window*> mWindows;
-
-            /* Will return a new window handle */
-            int AddWindow(Window* win);
-            void RemoveWindow(int winHandle);
+            std::unordered_map<uint32_t, Window> mWindows;
 
             Terminal()
             {

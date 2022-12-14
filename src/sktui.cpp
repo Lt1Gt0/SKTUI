@@ -2,11 +2,14 @@
 #include "terminal/terminal.h"
 #include <iostream>
 #include <signal.h>
+#include <atomic>
 
 
 namespace SKTUI
 {
     Terminal* Terminal::tInstance = new Terminal();
+    std::atomic_uint32_t Window::currentID;
+
     static bool bSignalsHandled = false;
 
     static void SigIntHandler(int sig)
