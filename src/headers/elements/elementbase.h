@@ -2,14 +2,12 @@
 #ifndef _SKTUI_ELEMENT_BASE_H
 #define _SKTUI_ELEMENT_BASE_H
 
-#include "terminal/screen.h"
-
 namespace SKTUI 
 {
     class ElementBase
     {
         public:
-            ElementBase(Screen* screen);
+            ElementBase(Window* win);
             ~ElementBase();
 
             virtual void Draw();

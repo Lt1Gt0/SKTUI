@@ -2,18 +2,18 @@
 
 namespace SKTUI 
 {
-    ElementBase::ElementBase(Screen* screen)
-    {
+    //ElementBase::ElementBase(Screen* screen)
+    //{
 
-    }
+    //}
 
-    ElementBase::~ElementBase()
-    {
+    //ElementBase::~ElementBase()
+    //{
 
-    }
+    //}
 
-    void ElementBase::Draw()
-    {
+    //void ElementBase::Draw()
+    //{
 
-    }
+    //}
 }

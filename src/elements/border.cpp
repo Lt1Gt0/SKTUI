@@ -2,13 +2,18 @@
 
 namespace SKTUI 
 {
-    Border::~Border()
-    {
+    //Border::Border(Window* win) : ElementBase(win)
+    //{
 
-    }
+    //}
 
-    void Border::Draw()
-    {
+    //Border::~Border()
+    //{
 
-    }
+    //}
+
+    //void Border::Draw()
+    //{
+
+    //}
 }

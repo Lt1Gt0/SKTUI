@@ -5,6 +5,8 @@
 namespace SKTUI 
 {
     void Init();
+
+    void Render();
 }
 
 #endif // _SKTUI_H
