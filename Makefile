@@ -9,7 +9,7 @@ REDIRECT_DIR = redirects
 
 #Compiler and linker things
 CC = g++
-CCFLAGS = -g -Wall -Wextra
+CCFLAGS = -g -Wall -Wextra -std=c++17
 LD = ld
 LDFLAGS = 
 

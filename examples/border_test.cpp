@@ -8,9 +8,12 @@ int main() {
     using namespace SKTUI;
     SKTUI::Init();
 
+    std::cout << "Border Test" << std::endl;
     Terminal* term = Terminal::GetInstance();
     int win = term->NewWindow();
-    SKTUI::Render();
+    Border border = Border(win);
+
+    //SKTUI::Render();
 
     return 0;
 }

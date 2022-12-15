@@ -26,6 +26,20 @@ namespace SKTUI
         return win.mID;
     }
 
+    Window* Terminal::FindWindow(int winID)
+    {
+        for (auto it = mWindows.begin(); it != mWindows.end(); it++) {
+            if ((int)it->first == winID) {
+                it = mWindows.erase(it);
+                std::cout << "Found id: " << winID << "...\nRemoving...\n";
+                return &it->second;
+            }
+        }
+
+        std::cerr << "ID [" << winID << "] Not found\n";
+        return nullptr;
+    }
+
     void Terminal::RemoveWindow(int winID)
     {
         for (auto it = mWindows.begin(); it != mWindows.end(); it++) {

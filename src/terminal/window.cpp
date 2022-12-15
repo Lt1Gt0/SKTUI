@@ -45,6 +45,11 @@ namespace SKTUI
         Print();
     }
 
+    Vec<Vec<Pixel>> Window::GetPixelMap()
+    {
+        return mPixels;
+    }
+
     void Window::Print()
     {
         std::cout << ToString() << '\0';

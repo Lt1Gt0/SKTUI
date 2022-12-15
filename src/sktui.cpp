@@ -3,8 +3,8 @@
 #include <iostream>
 #include <signal.h>
 #include <atomic>
+#include <locale.h>
 #include <sys/ioctl.h>
-
 
 namespace SKTUI
 {

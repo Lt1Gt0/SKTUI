@@ -24,8 +24,8 @@ namespace SKTUI
             void SetSize(Dimension newSize);
 
             /* Will return a new window handle */
-            //int AddWindow(Window* win);
             int NewWindow();
+            Window* FindWindow(int winHandle);
             void RemoveWindow(int winHandle);
 
             std::unordered_map<uint32_t, Window> mWindows;
@@ -34,10 +34,7 @@ namespace SKTUI
             static Terminal* tInstance;
             Dimension mSize;
 
-            Terminal()
-            {
-
-            }
+            Terminal() {}
     };
 
     //namespace Terminal

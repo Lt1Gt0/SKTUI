@@ -4,8 +4,7 @@
 
 #include "util.h"
 #include "terminal/pixel.h"
-//#include "elements/elementbase.h"
-//#include "elements/border.h"
+#include "elements/elementbase.h"
 #include <vector>
 #include <string>
 #include <atomic>
@@ -26,16 +25,14 @@ namespace SKTUI
             Window(Dimension size);
             ~Window();
 
-            void Loop();
-
-
-            //template<typename E_BASE>
-            //void AddElement(E_BASE& element);
+            void Draw();
+            void AddElement(ElementBase element);
+            Vec<Vec<Pixel>> GetPixelMap();
 
         protected:
             void PreInit();
             std::string ToString();
-            void Draw();
+            //void Draw();
             void Print();
 
             Dimension mSize;
