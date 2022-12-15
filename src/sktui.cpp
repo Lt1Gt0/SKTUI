@@ -6,46 +6,12 @@
 #include <locale.h>
 #include <sys/ioctl.h>
 #include <termios.h>
+#include <thread>
 
 namespace SKTUI
 {
     Terminal* Terminal::tInstance = new Terminal();
     std::atomic_int Window::currentID;
-
-    static bool bSignalsHandled = false;
-
-    static void SigIntHandler(int sig)
-    {
-        std::cerr << "TODO: Handle sigint properly" << std::endl;
-        std::cerr << "Sig int got: " << sig << std::endl;
-        exit(-1);
-    }
-
-    static void SigWinchHandler(int sig) 
-    {
-        winsize ws;
-
-        if (ioctl(STDOUT_FILENO, TIOCGWINSZ, &ws)) {
-            std::cerr << "Unable to handle window size change\nExiting..." << std::endl;
-            exit(-1);
-        }
-
-        std::cout << "Window size changed\n";
-        Terminal::GetInstance()->SetSize({ws.ws_col, ws.ws_row});
-    }
-
-    static void SetSignalHandlers()
-    {
-        if (bSignalsHandled) {
-            std::cerr << "Signals have already been handled" << std::endl;
-            return;
-        }
-        
-        signal(SIGINT, SigIntHandler);
-        signal(SIGWINCH, SigWinchHandler);
-
-        bSignalsHandled = true;
-    }
 
     static void CleanSKTUI()
     {
@@ -54,7 +20,6 @@ namespace SKTUI
 
     void Init()
     {
-        SetSignalHandlers();
         Terminal::GetInstance()->SetTerminalAttributes();
 
         std::atexit(CleanSKTUI);
@@ -63,6 +28,10 @@ namespace SKTUI
     void Render()
     {
         Terminal* t = Terminal::GetInstance();
+
+        std::thread tTermInput(TerminalHandleInput);
+        tTermInput.join();
+
 
         while (1) {
             for (auto it = t->mWindows.begin(); it != t->mWindows.end(); it++) {

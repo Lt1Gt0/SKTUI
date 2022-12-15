@@ -43,6 +43,8 @@ namespace SKTUI
             termios mOrigTerm;
             termios mCurrentTerm;
     };
+
+    void TerminalHandleInput();
 }
 
 #endif // _SKTUI_TERMINAL_H

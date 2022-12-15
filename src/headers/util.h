@@ -5,6 +5,8 @@
 #include <stddef.h>
 #include <stdint.h>
 
+#define CTRL_KEY(k) ((k) & (0x1F))
+
 namespace SKTUI 
 {
     constexpr int UNDEFINED_DIM = -1;

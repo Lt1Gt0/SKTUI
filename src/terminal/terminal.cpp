@@ -3,16 +3,41 @@
 #include <sys/ioctl.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
+#include <string.h>
+#include <signal.h>
 
 #include <iostream>
 #include <vector>
 
 namespace SKTUI
 {
+    // TERMINAL SIGNALS
+    static void SigIntHandler(int sig)
+    {
+        std::cerr << "TODO: Handle sigint properly" << std::endl;
+        std::cerr << "Sig int got: " << sig << std::endl;
+        exit(-1);
+    }
+
+    static void SigWinchHandler(int sig) 
+    {
+        winsize ws;
+
+        if (ioctl(fileno(stdout), TIOCGWINSZ, &ws)) {
+            std::cerr << "Unable to handle window size change\nExiting..." << std::endl;
+            exit(-1);
+        }
+
+        std::cout << "Window size changed\n";
+        Terminal::GetInstance()->SetSize({ws.ws_col, ws.ws_row});
+    }
+    //////////////////// 
+
     Terminal::Terminal()
     {
         // Store original terminal attributes
-        tcgetattr(fileno(stdout), &mCurrentTerm);
+        tcgetattr(fileno(stdout), &mOrigTerm);
     }
 
     Point Terminal::GetSize()
@@ -48,7 +73,7 @@ namespace SKTUI
     void Terminal::ResetTerminalAttributes()
     {
         mCurrentTerm = mOrigTerm;
-        tcsetattr(fileno(stdout), TCSAFLUSH, &mCurrentTerm);
+        tcsetattr(fileno(stdout), TCSANOW, &mCurrentTerm);
     }
 
 
@@ -80,5 +105,27 @@ namespace SKTUI
         }
 
         std::cerr << "ID [" << winID << "] Not found, so there is nothing to delete\n";
+    }
+
+    void TerminalHandleInput()
+    {
+        //int bufSize = 8;
+        //char* buf = new char[bufSize];
+
+        while (1) {
+            //memset(buf, '\0', sizeof(bufSize));
+            //read(fileno(stdout), buf, sizeof(bufSize));
+            char c;
+            read(fileno(stdout), &c, 1);
+            //getc(stdout);
+
+            switch(c) {
+                case CTRL('C'):
+                {
+                    SigIntHandler(SIGINT);
+                    break;
+                }
+            }
+        }
     }
 }
