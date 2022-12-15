@@ -9,15 +9,48 @@
 
 namespace SKTUI
 {
-    Dimension Terminal::GetSize()
+    Terminal::Terminal()
+    {
+        // Store original terminal attributes
+        tcgetattr(fileno(stdout), &mCurrentTerm);
+    }
+
+    Point Terminal::GetSize()
     {
         return this->mSize;
     }
 
-    void Terminal::SetSize(Dimension newSize)
+    void Terminal::SetSize(Point newSize)
     {
         this->mSize = newSize;
     }
+
+    void Terminal::SetTerminalAttributes()
+    {
+        termios term = termios();
+
+        // Default raw mode configuration from man page, subject to change
+       term.c_iflag &= ~(IGNBRK | BRKINT | PARMRK | ISTRIP | INLCR | IGNCR | ICRNL | IXON);
+       term.c_oflag &= ~OPOST;
+       term.c_lflag &= ~(ECHO | ECHONL | ICANON | ISIG | IEXTEN);
+       term.c_cflag &= ~(CSIZE | PARENB);
+       term.c_cflag |= CS8;
+
+       SetTerminalAttributes(term);
+    }
+
+    void Terminal::SetTerminalAttributes(termios newTerm)
+    {
+        mCurrentTerm = newTerm;
+        tcsetattr(fileno(stdout), TCSAFLUSH, &mCurrentTerm);
+    }
+
+    void Terminal::ResetTerminalAttributes()
+    {
+        mCurrentTerm = mOrigTerm;
+        tcsetattr(fileno(stdout), TCSAFLUSH, &mCurrentTerm);
+    }
+
 
     int Terminal::NewWindow() 
     {
@@ -29,11 +62,8 @@ namespace SKTUI
     Window* Terminal::FindWindow(int winID)
     {
         for (auto it = mWindows.begin(); it != mWindows.end(); it++) {
-            if ((int)it->first == winID) {
-                it = mWindows.erase(it);
-                std::cout << "Found id: " << winID << "...\nRemoving...\n";
+            if ((int)it->first == winID)
                 return &it->second;
-            }
         }
 
         std::cerr << "ID [" << winID << "] Not found\n";
@@ -45,7 +75,6 @@ namespace SKTUI
         for (auto it = mWindows.begin(); it != mWindows.end(); it++) {
             if ((int)it->first == winID) {
                 it = mWindows.erase(it);
-                std::cout << "Found id: " << winID << "...\nRemoving...\n";
                 return;
             }
         }

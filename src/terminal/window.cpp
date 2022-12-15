@@ -12,7 +12,7 @@ namespace SKTUI
         PreInit();
     }
 
-    Window::Window(Dimension size)
+    Window::Window(Point size)
     {
         mSize = size;
         PreInit();
@@ -30,19 +30,23 @@ namespace SKTUI
         mPixels.reserve(mSize.Y);
     }
 
-    void Window::Loop()
-    {
-        while (1) {
-            Draw();
-        }
-    }
-
     void Window::Draw()
     {
-        //if (mBorderVisible)
-            //mBorder.Draw();
+        for (ElementBase element : mElements) {
+            element.Draw();
+        }
 
         Print();
+    }
+
+    Point Window::GetSize()
+    {
+        return mSize;
+    }
+
+    void Window::SetSize(Point size)
+    {
+        mSize = size;
     }
 
     Vec<Vec<Pixel>> Window::GetPixelMap()
@@ -71,8 +75,8 @@ namespace SKTUI
     }
 
     //template<typename E_BASE>
-    //void Window::AddElement(E_BASE& element)
-    //{
-        //ElementBase* e = (ElementBase*)&element;
-    //}
+    void Window::AddElement(ElementBase element)
+    {
+        mElements.push_back(element);
+    }
 }

@@ -22,11 +22,13 @@ namespace SKTUI
             static std::atomic_int currentID;
 
             Window();
-            Window(Dimension size);
+            Window(Point size);
             ~Window();
 
             void Draw();
             void AddElement(ElementBase element);
+            Point GetSize();
+            void SetSize(Point size);
             Vec<Vec<Pixel>> GetPixelMap();
 
         protected:
@@ -35,7 +37,8 @@ namespace SKTUI
             //void Draw();
             void Print();
 
-            Dimension mSize;
+            Point mSize;
+            Vec<ElementBase> mElements;
             Vec<Vec<Pixel>> mPixels;
     };
 }

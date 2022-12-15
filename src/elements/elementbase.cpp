@@ -5,10 +5,13 @@
 
 namespace SKTUI 
 {
-    ElementBase::ElementBase(int winID, Dimension size, Dimension pos)
+    ElementBase::ElementBase(int winID, Point size, Point pos)
     {
         mWindow = Terminal::GetInstance()->FindWindow(winID);
         mPixelMap = mWindow->GetPixelMap();
+
+        mSize = size;
+        mPos = pos;
     }
 
     ElementBase::~ElementBase()

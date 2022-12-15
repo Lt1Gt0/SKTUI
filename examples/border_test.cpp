@@ -13,7 +13,7 @@ int main() {
     int win = term->NewWindow();
     Border border = Border(win);
 
-    //SKTUI::Render();
+    SKTUI::Render();
 
     return 0;
 }

@@ -10,7 +10,7 @@ namespace SKTUI
     class Border : public ElementBase 
     {
         public:
-            Border(int winID, Dimension size = {-1, -1}, Dimension pos = {-1, -1});
+            Border(int winID, Point size = {UNDEFINED_DIM, UNDEFINED_DIM}, Point pos = {UNDEFINED_POS, UNDEFINED_POS});
             ~Border();
             void Draw();
     };

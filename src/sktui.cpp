@@ -5,6 +5,7 @@
 #include <atomic>
 #include <locale.h>
 #include <sys/ioctl.h>
+#include <termios.h>
 
 namespace SKTUI
 {
@@ -29,6 +30,7 @@ namespace SKTUI
             exit(-1);
         }
 
+        std::cout << "Window size changed\n";
         Terminal::GetInstance()->SetSize({ws.ws_col, ws.ws_row});
     }
 
@@ -45,17 +47,27 @@ namespace SKTUI
         bSignalsHandled = true;
     }
 
+    static void CleanSKTUI()
+    {
+        Terminal::GetInstance()->ResetTerminalAttributes();
+    }
+
     void Init()
     {
         SetSignalHandlers();
+        Terminal::GetInstance()->SetTerminalAttributes();
+
+        std::atexit(CleanSKTUI);
     }
 
     void Render()
     {
         Terminal* t = Terminal::GetInstance();
 
-        for (auto it = t->mWindows.begin(); it != t->mWindows.end(); it++) {
-            it->second.Loop();
+        while (1) {
+            for (auto it = t->mWindows.begin(); it != t->mWindows.end(); it++) {
+                it->second.Draw();
+            }
         }
     }
 }

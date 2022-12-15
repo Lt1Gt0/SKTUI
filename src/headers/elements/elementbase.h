@@ -15,7 +15,7 @@ namespace SKTUI
     class ElementBase
     {
         public:
-            ElementBase(int winID, Dimension size = {-1, -1}, Dimension pos = {-1, -1});
+            ElementBase(int winID, Point size = {UNDEFINED_DIM, UNDEFINED_DIM}, Point pos = {UNDEFINED_POS, UNDEFINED_POS});
             ~ElementBase();
 
             virtual void Draw();
@@ -23,8 +23,8 @@ namespace SKTUI
         protected:
             Window* mWindow;
             Vec<Vec<Pixel>> mPixelMap;
-            Dimension mSize;
-            Dimension mPos;
+            Point mSize;
+            Point mPos;
     };
 }
 

@@ -7,6 +7,7 @@
 
 #include <vector>
 #include <unordered_map>
+#include <termios.h>
 
 namespace SKTUI 
 {
@@ -20,8 +21,12 @@ namespace SKTUI
                 return tInstance;
             }
 
-            Dimension GetSize();
-            void SetSize(Dimension newSize);
+            Point GetSize();
+            void SetSize(Point newSize);
+
+            void SetTerminalAttributes();
+            void SetTerminalAttributes(termios newTerm);
+            void ResetTerminalAttributes();
 
             /* Will return a new window handle */
             int NewWindow();
@@ -31,19 +36,13 @@ namespace SKTUI
             std::unordered_map<uint32_t, Window> mWindows;
 
         private:
+            Terminal();
+
             static Terminal* tInstance;
-            Dimension mSize;
-
-            Terminal() {}
+            Point mSize;
+            termios mOrigTerm;
+            termios mCurrentTerm;
     };
-
-    //namespace Terminal
-    //{
-        //void SetSignalHandlers();
-        //Dimension size(); 
-        //void AddWindow(Window* win);
-        //void Render();
-    //}
 }
 
 #endif // _SKTUI_TERMINAL_H
