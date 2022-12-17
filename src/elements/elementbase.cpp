@@ -8,23 +8,31 @@ namespace SKTUI
     ElementBase::ElementBase(int winID, Point size, Point pos)
     {
         mWindow = Terminal::GetInstance()->FindWindow(winID);
-        mPixelMap = mWindow->GetPixelMap();
+        mWindowPixelMap = mWindow->GetPixelMap();
 
         mSize = size;
-        mPos = pos;
+        mStartPos = pos;
     }
 
-    ElementBase::~ElementBase()
+    void ElementBase::UpdatePixelMap()
     {
-
+        // As a default update loop, clear the pixel map
+        for (int row = 0; row < mSize.Y; row++) {
+            for (int col = 0; col < mSize.X; col++) {
+                Pixel pixel = Pixel();
+                pixel.mChar = '-';
+                mPixelMap[row][col] = pixel;
+            }
+        }
+        
     }
 
     void ElementBase::Draw()
     {
-        //for (Vec<Pixel> row : mPixelMap) {
-            //for (Pixel pixel : row) {
-                //std::string pixelStr = pixel.
-            //}
-        //}
+        for (int row = 0; row < mSize.Y; row++) {
+            for (int col = 0; col < mSize.X; col++) {
+                mWindowPixelMap[row + mStartPos.Y][col + mStartPos.X] = mPixelMap[row][col];
+            }
+        }
     }
 }

@@ -109,15 +109,9 @@ namespace SKTUI
 
     void TerminalHandleInput()
     {
-        //int bufSize = 8;
-        //char* buf = new char[bufSize];
-
         while (1) {
-            //memset(buf, '\0', sizeof(bufSize));
-            //read(fileno(stdout), buf, sizeof(bufSize));
             char c;
             read(fileno(stdout), &c, 1);
-            //getc(stdout);
 
             switch(c) {
                 case CTRL('C'):

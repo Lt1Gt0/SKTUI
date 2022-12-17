@@ -21,22 +21,24 @@ namespace SKTUI
     void Init()
     {
         Terminal::GetInstance()->SetTerminalAttributes();
-
         std::atexit(CleanSKTUI);
     }
 
-    void Render()
+    void RenderLoop()
     {
         Terminal* t = Terminal::GetInstance();
-
-        std::thread tTermInput(TerminalHandleInput);
-        tTermInput.join();
-
-
         while (1) {
             for (auto it = t->mWindows.begin(); it != t->mWindows.end(); it++) {
                 it->second.Draw();
             }
         }
+    }
+
+    void Render()
+    {
+        std::thread tTermInput(TerminalHandleInput);
+        std::thread tTermRender(RenderLoop);
+        tTermInput.join();
+        tTermRender.join();
     }
 }

@@ -16,15 +16,18 @@ namespace SKTUI
     {
         public:
             ElementBase(int winID, Point size = {UNDEFINED_DIM, UNDEFINED_DIM}, Point pos = {UNDEFINED_POS, UNDEFINED_POS});
-            ~ElementBase();
+            virtual ~ElementBase() {};
 
             virtual void Draw();
+            virtual void UpdatePixelMap();
 
         protected:
             Window* mWindow;
+            Vec<Vec<Pixel>> mWindowPixelMap;
             Vec<Vec<Pixel>> mPixelMap;
             Point mSize;
-            Point mPos;
+            Point mStartPos;
+            Point mRenderPos;
     };
 }
 

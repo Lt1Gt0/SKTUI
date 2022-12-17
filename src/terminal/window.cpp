@@ -33,7 +33,7 @@ namespace SKTUI
     void Window::Draw()
     {
         for (ElementBase element : mElements) {
-            element.Draw();
+            element.UpdatePixelMap();
         }
 
         Print();
@@ -74,7 +74,6 @@ namespace SKTUI
         return strWindow.str();
     }
 
-    //template<typename E_BASE>
     void Window::AddElement(ElementBase element)
     {
         mElements.push_back(element);

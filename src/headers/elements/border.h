@@ -13,6 +13,7 @@ namespace SKTUI
             Border(int winID, Point size = {UNDEFINED_DIM, UNDEFINED_DIM}, Point pos = {UNDEFINED_POS, UNDEFINED_POS});
             ~Border();
             void Draw();
+            void UpdatePixelMap();
     };
 }
 
