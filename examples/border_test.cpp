@@ -13,7 +13,7 @@ int main() {
     int win = term->NewWindow();
     Window* mainWin = term->FindWindow(win);
 
-    Border border = Border(win);
+    Border border = Border(win, {10, 10}, {0, 1});
     mainWin->AddElement(&border);
 
     SKTUI::Render();

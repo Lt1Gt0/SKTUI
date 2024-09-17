@@ -14,10 +14,17 @@ namespace SKTUI
         else
             mStartPos = pos;
 
-        if (size.X == UNDEFINED_DIM && size.Y == UNDEFINED_DIM)
-            mSize = mWindow->GetSize();
+        // FIXME
+        if (size.X == UNDEFINED_DIM)
+            mSize.X = 0;
         else
-            mSize = size;
+            mSize.X = size.X;
+
+        // FIXME
+        if (size.Y == UNDEFINED_DIM)
+            mSize.Y = 0;
+        else
+            mSize.Y = size.Y;
 
         mWindowPixelMap = mWindow->GetPixelMap();
         for (int i = 0; i < mSize.Y; i++) {

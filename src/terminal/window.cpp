@@ -65,8 +65,7 @@ namespace SKTUI
 
     void Window::Print()
     {
-        // std::cout << ToString() << '\0';
-        std::cout << ToString().data() << "\n\r";
+        std::cout << ToString() << '\0';
         std::cout << std::flush;
     }
 
@@ -79,7 +78,7 @@ namespace SKTUI
                 strWindow += col->mChar;
             }
 
-            strWindow += "\n";
+            strWindow += "\n\r";
         }
 
         return strWindow;
