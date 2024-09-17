@@ -66,7 +66,6 @@ namespace SKTUI
     void Window::Print()
     {
         std::cout << ToString() << '\0';
-        std::cout << std::flush;
     }
 
     std::string Window::ToString()
