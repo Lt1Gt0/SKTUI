@@ -38,6 +38,11 @@ namespace SKTUI
     {
         // Store original terminal attributes
         tcgetattr(fileno(stdout), &mOrigTerm);
+
+        // Store initial terminal size
+        winsize ws;
+        ioctl(0, TIOCGWINSZ, &ws);
+        SetSize({.X=ws.ws_col, .Y=ws.ws_row});
     }
 
     Point Terminal::GetSize()

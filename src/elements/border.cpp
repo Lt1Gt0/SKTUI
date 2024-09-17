@@ -25,7 +25,7 @@ namespace SKTUI
    
     void Border::UpdatePixelMap()
     {
-        std::cerr << "Calling border update\n";
+        std::cout << "Calling border update\n";
         Pixel p = Pixel(); 
         p.mChar = D_BD_TL;
         mPixelMap[0][0] = p;
@@ -33,6 +33,10 @@ namespace SKTUI
 
     void Border::Draw()
     {
-
+        for (auto row : mPixelMap) {
+            for (auto col : row) {
+                std::cout << col.mChar;
+            }
+        }
     }
 }
