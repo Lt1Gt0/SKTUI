@@ -11,13 +11,10 @@ int main() {
     std::cout << "Border Test" << std::endl;
     Terminal* term = Terminal::GetInstance();
     int win = term->NewWindow();
-    Border border = Border(win, {0, 0}, {10, 10});
+    Window* mainWin = term->FindWindow(win);
 
-    Point size = term->GetSize();
-    std::cout << size.X << " : " << size.Y << "\n";
-
-    // border.UpdatePixelMap();
-    // border.Draw();
+    Border border = Border(win);
+    mainWin->AddElement(border);
 
     SKTUI::Render();
 

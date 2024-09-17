@@ -27,13 +27,22 @@ namespace SKTUI
     void Window::PreInit()
     {
         // Initialize enough size to fit the screen
-        mPixels.reserve(mSize.Y);
+        for (int i = 0; i < mSize.Y; i++) {
+            Vec<Pixel> row = Vec<Pixel>(mSize.X);
+
+            for (int j = 0; j < mSize.X; j++) {
+                row[j] = Pixel();
+            }
+
+            mPixels.push_back(row);
+        }
     }
 
     void Window::Draw()
     {
         for (ElementBase element : mElements) {
             element.UpdatePixelMap();
+            element.Draw();
         }
 
         Print();
@@ -63,8 +72,8 @@ namespace SKTUI
     std::string Window::ToString()
     {
         std::stringstream strWindow; 
-        for (Vec<Pixel> row : mPixels) {
-            for (Pixel col : row) {
+        for (auto row : mPixels) {
+            for (auto col : row) {
                 strWindow << col.mChar;
             }
 

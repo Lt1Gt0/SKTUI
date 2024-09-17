@@ -5,23 +5,8 @@
 
 namespace SKTUI 
 {
-    Border::Border(int winID, Point size, Point pos) : ElementBase(winID, size, pos)
-    {
-        if (pos.X == UNDEFINED_POS && pos.Y == UNDEFINED_POS)
-            mStartPos = {0, 0};
-        else
-            mStartPos = pos;
-
-        if (size.X == UNDEFINED_DIM && size.Y == UNDEFINED_DIM)
-            mSize = mWindow->GetSize();
-        else
-            mSize = size;
-    }
-
-    Border::~Border()
-    {
-
-    }
+    Border::Border(int winID, Point size, Point pos) : ElementBase(winID, size, pos) { }
+    Border::~Border() { }
    
     void Border::UpdatePixelMap()
     {
@@ -31,12 +16,12 @@ namespace SKTUI
         mPixelMap[0][0] = p;
     }
 
-    void Border::Draw()
-    {
-        for (auto row : mPixelMap) {
-            for (auto col : row) {
-                std::cout << col.mChar;
-            }
-        }
-    }
+    // void Border::Draw()
+    // {
+        // for (auto row : mPixelMap) {
+        //     for (auto col : row) {
+        //         std::cout << col.mChar;
+        //     }
+        // }
+    // }
 }

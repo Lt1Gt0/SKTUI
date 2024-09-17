@@ -7,11 +7,28 @@ namespace SKTUI
 {
     ElementBase::ElementBase(int winID, Point size, Point pos)
     {
+        if (pos.X == UNDEFINED_POS && pos.Y == UNDEFINED_POS)
+            mStartPos = {0, 0};
+        else
+            mStartPos = pos;
+
+        if (size.X == UNDEFINED_DIM && size.Y == UNDEFINED_DIM)
+            mSize = mWindow->GetSize();
+        else
+            mSize = size;
+
         mWindow = Terminal::GetInstance()->FindWindow(winID);
         mWindowPixelMap = mWindow->GetPixelMap();
 
-        mSize = size;
-        mStartPos = pos;
+        for (int i = 0; i < mSize.Y; i++) {
+            Vec<Pixel> row = Vec<Pixel>(mSize.X);
+
+            for (int j = 0; j < mSize.X; j++) {
+                row[j] = Pixel();
+            }
+
+            mPixelMap.push_back(row);
+        }
     }
 
     void ElementBase::UpdatePixelMap()
@@ -24,7 +41,6 @@ namespace SKTUI
                 mPixelMap[row][col] = pixel;
             }
         }
-        
     }
 
     void ElementBase::Draw()
