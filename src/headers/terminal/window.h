@@ -26,10 +26,10 @@ namespace SKTUI
             ~Window();
 
             void Draw();
-            void AddElement(ElementBase element);
+            void AddElement(ElementBase* element);
             Point GetSize();
             void SetSize(Point size);
-            Vec<Vec<Pixel>> GetPixelMap();
+            Vec<Vec<Pixel*>> GetPixelMap();
 
         protected:
             void PreInit();
@@ -38,8 +38,8 @@ namespace SKTUI
             void Print();
 
             Point mSize;
-            Vec<ElementBase> mElements;
-            Vec<Vec<Pixel>> mPixels;
+            Vec<ElementBase*> mElements;
+            Vec<Vec<Pixel*>> mPixels;
     };
 }
 

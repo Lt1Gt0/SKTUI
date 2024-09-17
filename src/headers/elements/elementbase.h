@@ -23,8 +23,8 @@ namespace SKTUI
 
         protected:
             Window* mWindow;
-            Vec<Vec<Pixel>> mWindowPixelMap;
-            Vec<Vec<Pixel>> mPixelMap;
+            Vec<Vec<Pixel*>> mWindowPixelMap;
+            Vec<Vec<Pixel*>> mPixelMap;
             Point mSize;
             Point mStartPos;
             Point mRenderPos;

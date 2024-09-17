@@ -28,10 +28,10 @@ namespace SKTUI
     {
         // Initialize enough size to fit the screen
         for (int i = 0; i < mSize.Y; i++) {
-            Vec<Pixel> row = Vec<Pixel>(mSize.X);
+            Vec<Pixel*> row = Vec<Pixel*>(mSize.X);
 
             for (int j = 0; j < mSize.X; j++) {
-                row[j] = Pixel();
+                row[j] = new Pixel;
             }
 
             mPixels.push_back(row);
@@ -40,9 +40,9 @@ namespace SKTUI
 
     void Window::Draw()
     {
-        for (ElementBase element : mElements) {
-            element.UpdatePixelMap();
-            element.Draw();
+        for (ElementBase* element : mElements) {
+            element->UpdatePixelMap();
+            element->Draw();
         }
 
         Print();
@@ -58,32 +58,34 @@ namespace SKTUI
         mSize = size;
     }
 
-    Vec<Vec<Pixel>> Window::GetPixelMap()
+    Vec<Vec<Pixel*>> Window::GetPixelMap()
     {
         return mPixels;
     }
 
     void Window::Print()
     {
-        std::cout << ToString() << '\0';
+        // std::cout << ToString() << '\0';
+        std::cout << ToString().data() << "\n\r";
         std::cout << std::flush;
     }
 
     std::string Window::ToString()
     {
-        std::stringstream strWindow; 
+        // std::stringstream strWindow; 
+        std::string strWindow;
         for (auto row : mPixels) {
             for (auto col : row) {
-                strWindow << col.mChar;
+                strWindow += col->mChar;
             }
 
-            strWindow << "\n";
+            strWindow += "\n";
         }
 
-        return strWindow.str();
+        return strWindow;
     }
 
-    void Window::AddElement(ElementBase element)
+    void Window::AddElement(ElementBase* element)
     {
         mElements.push_back(element);
     }
