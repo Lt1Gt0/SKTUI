@@ -8,10 +8,13 @@ int main() {
     using namespace SKTUI;
     SKTUI::Init();
 
-    std::cout << "Border Test" << std::endl;
+    std::cout << "Border Test\n\r";
     Terminal* term = Terminal::GetInstance();
     int win = term->NewWindow();
-    Border border = Border(win);
+    Window* mainWin = term->FindWindow(win);
+
+    Border border = Border(win, {10, 10}, {0, 1});
+    mainWin->AddElement(&border);
 
     SKTUI::Render();
 

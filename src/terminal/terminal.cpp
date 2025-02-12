@@ -15,8 +15,8 @@ namespace SKTUI
     // TERMINAL SIGNALS
     static void SigIntHandler(int sig)
     {
-        std::cerr << "TODO: Handle sigint properly" << std::endl;
-        std::cerr << "Sig int got: " << sig << std::endl;
+        std::cerr << "TODO: Handle sigint properly\n\r";
+        std::cerr << "Sig int got: " << sig << "\n\r";
         exit(-1);
     }
 
@@ -25,11 +25,11 @@ namespace SKTUI
         winsize ws;
 
         if (ioctl(fileno(stdout), TIOCGWINSZ, &ws)) {
-            std::cerr << "Unable to handle window size change\nExiting..." << std::endl;
+            std::cerr << "Unable to handle window size change\nExiting...\n\r";
             exit(-1);
         }
 
-        std::cout << "Window size changed\n";
+        std::cout << "Window size changed\n\r";
         Terminal::GetInstance()->SetSize({ws.ws_col, ws.ws_row});
     }
     //////////////////// 
@@ -38,6 +38,11 @@ namespace SKTUI
     {
         // Store original terminal attributes
         tcgetattr(fileno(stdout), &mOrigTerm);
+
+        // Store initial terminal size
+        winsize ws;
+        ioctl(0, TIOCGWINSZ, &ws);
+        SetSize({.X=ws.ws_col, .Y=ws.ws_row});
     }
 
     Point Terminal::GetSize()
@@ -76,7 +81,6 @@ namespace SKTUI
         tcsetattr(fileno(stdout), TCSANOW, &mCurrentTerm);
     }
 
-
     int Terminal::NewWindow() 
     {
         Window win = Window();
@@ -91,7 +95,7 @@ namespace SKTUI
                 return &it->second;
         }
 
-        std::cerr << "ID [" << winID << "] Not found\n";
+        std::cerr << "ID [" << winID << "] Not found\n\r";
         return nullptr;
     }
 
@@ -104,7 +108,7 @@ namespace SKTUI
             }
         }
 
-        std::cerr << "ID [" << winID << "] Not found, so there is nothing to delete\n";
+        std::cerr << "ID [" << winID << "] Not found, so there is nothing to delete\n\r";
     }
 
     void TerminalHandleInput()

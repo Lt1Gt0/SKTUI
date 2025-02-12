@@ -28,6 +28,7 @@ namespace SKTUI
     {
         Terminal* t = Terminal::GetInstance();
         while (1) {
+            fputs("\033c", stdout);
             for (auto it = t->mWindows.begin(); it != t->mWindows.end(); it++) {
                 it->second.Draw();
             }
