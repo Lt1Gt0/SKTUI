@@ -1,11 +1,14 @@
-.vimrc
 .vim/
 .vscode/
 .ccls-cache/
-compile_commands.json
+.cache/
+
 obj/
 build/
 bin/
+
+.vimrc
+compile_commands.json
 *.tmp
 *.o
 *.bin
