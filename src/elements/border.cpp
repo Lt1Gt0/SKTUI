@@ -10,7 +10,7 @@ namespace SKTUI
     {
         for (int i = 0; i < mSize.Y; i++) {
             for (int j = 0; j < mSize.X; j++) {
-                mPixelMap[i][j]->mChar = "-";
+                mPixelMap[i][j]->mChar = BLANK;
             }
         }
 
@@ -19,7 +19,6 @@ namespace SKTUI
         mPixelMap[0][mSize.X - 1]->mChar = D_BD_TR;
         mPixelMap[mSize.Y - 1][0]->mChar = D_BD_BL;
         mPixelMap[mSize.Y - 1][mSize.X - 1]->mChar = D_BD_BR;
-
 
         // Print col verticals
         for (int i = 1; i < mSize.Y - 1; i++) {

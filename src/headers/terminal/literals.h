@@ -4,6 +4,8 @@
 
 namespace SKTUI
 {
+    constexpr const char BLANK = ' ';
+
     /* 
      * BOX LITERALS
      * Border literals will be prefixed with BD_
@@ -27,15 +29,13 @@ namespace SKTUI
      **/
 
     // BOX LITERALS
-        constexpr const char D_BD_HORIZONTAL[4] = "\u2500";
-        constexpr const char D_BD_VERTICAL[4] = "\u2502";
-        constexpr const char D_BD_TL[4] = "\u250C";
-        constexpr const char D_BD_TR[4] = "\u2510";
-        constexpr const char D_BD_BL[4] = "\u2514";
-        constexpr const char D_BD_BR[4] = "\u2518";
+    constexpr const char D_BD_HORIZONTAL[4] = "\u2500";
+    constexpr const char D_BD_VERTICAL[4] = "\u2502";
+    constexpr const char D_BD_TL[4] = "\u250C";
+    constexpr const char D_BD_TR[4] = "\u2510";
+    constexpr const char D_BD_BL[4] = "\u2514";
+    constexpr const char D_BD_BR[4] = "\u2518";
     //
-    
-
 }
 
 #endif // _SKTUI_TERMINAL_LITERALS
