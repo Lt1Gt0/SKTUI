@@ -28,7 +28,9 @@ namespace SKTUI
     {
         Terminal* t = Terminal::GetInstance();
         while (1) {
-            fputs("\033c", stdout);
+            // ANSI escape code to clear screen and move cursor to top-left
+            std::cout << "\033[2J\033[H";
+
             for (auto it = t->mWindows.begin(); it != t->mWindows.end(); it++) {
                 it->second.Draw();
             }
