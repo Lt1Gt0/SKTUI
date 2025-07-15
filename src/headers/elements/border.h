@@ -3,10 +3,22 @@
 #define _SKTUI_ELEMENT_BORDER_H
 
 #include "elements/elementbase.h"
-#include "terminal/window.h"
+// #include "terminal/window.h"
 
 namespace SKTUI 
 {
+    struct BorderOutline {
+        public: 
+            BorderOutline();
+            BorderOutline(const char* topLeft, const char* topRight, const char* bottomLeft, const char* bottomRight);
+            ~BorderOutline();
+
+            const char* mTopLeft;
+            const char* mTopRight;
+            const char* mBottomLeft;
+            const char* mBottomRight;
+    };
+
     class Border : public ElementBase 
     {
         public:
@@ -15,6 +27,15 @@ namespace SKTUI
 
             // void Draw();
             void UpdatePixelMap();
+
+            BorderOutline GetOutline();
+
+            void SetOutlineSingle();
+            void SetOutlineDouble();
+            void SetOutlineCustom(const BorderOutline& borderOutline);
+
+        private:
+            BorderOutline mOutline;
     };
 }
 

@@ -23,8 +23,14 @@ namespace SKTUI
 
         protected:
             Window* mWindow;
+
+            // FIXME
+            // In the future before the codebase because much larger
+            // I would like to convert these into flattened vectors
+            // to reduce execution times
             Vec<Vec<Pixel*>> mWindowPixelMap;
             Vec<Vec<Pixel*>> mPixelMap;
+
             Point mSize;
             Point mStartPos;
             Point mRenderPos;

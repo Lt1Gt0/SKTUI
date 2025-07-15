@@ -9,10 +9,26 @@ namespace SKTUI
     {
         mWindow = Terminal::GetInstance()->FindWindow(winID);
 
-        if (pos.X == UNDEFINED_POS && pos.Y == UNDEFINED_POS)
+        // --- TODO ---
+        // Calculate next offset depending on previous or current
+        // elements on window
+        //
+        // This could be a flag passed into the window to determine if
+        // new elements with undefined positions should just overide the 
+        // top most element or if they should attempt to find a new
+        // poision to the [left, right, up, down] of the nearest
+        // element (flag passed to window to determine these actions)
+        //
+        // If the flag is passed to determine the next position is set
+        // there should also be another flag to determine if the new
+        // calculated position should also dynamically determine the
+        // padding between elements
+        // ------------
+        if (pos.X == UNDEFINED_POS && pos.Y == UNDEFINED_POS) {
             mStartPos = {0, 0};
-        else
+        } else {
             mStartPos = pos;
+        }
 
         // FIXME
         if (size.X == UNDEFINED_DIM)

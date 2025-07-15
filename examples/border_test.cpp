@@ -15,6 +15,12 @@ int main() {
 
     Border border = Border(win, {10, 10}, {0, 1});
     Border border2 = Border(win, {20, 10}, {10, 11});
+
+    // Set outline
+    BorderOutline customOutline = BorderOutline("a", "a", "a", "a");
+    border2.SetOutlineCustom(customOutline);
+
+
     mainWin->AddElement(&border);
     mainWin->AddElement(&border2);
 

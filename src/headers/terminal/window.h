@@ -29,6 +29,9 @@ namespace SKTUI
             void AddElement(ElementBase* element);
             Point GetSize();
             void SetSize(Point size);
+
+            // FIXME
+            // Should return flattened pixel map later
             Vec<Vec<Pixel*>> GetPixelMap();
 
         protected:
@@ -39,6 +42,9 @@ namespace SKTUI
 
             Point mSize;
             Vec<ElementBase*> mElements;
+
+            // FIXME
+            // Should be flattened pixel map
             Vec<Vec<Pixel*>> mPixels;
     };
 }
