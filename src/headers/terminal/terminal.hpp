@@ -1,9 +1,9 @@
 #pragma once
-#ifndef _SKTUI_TERMINAL_H
-#define _SKTUI_TERMINAL_H
+#ifndef _SKTUI_TERMINAL_HPP_
+#define _SKTUI_TERMINAL_HPP_
 
-#include "util.h"
-#include "terminal/window.h"
+#include "util.hpp"
+#include "terminal/window.hpp"
 
 #include <vector>
 #include <unordered_map>
@@ -47,4 +47,4 @@ namespace SKTUI
     void TerminalHandleInput();
 }
 
-#endif // _SKTUI_TERMINAL_H
+#endif // _SKTUI_TERMINAL_HPP_

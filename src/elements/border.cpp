@@ -1,5 +1,5 @@
-#include "elements/border.h"
-#include "terminal/literals.h"
+#include "elements/border.hpp"
+#include "terminal/literals.hpp"
 
 namespace SKTUI 
 {

@@ -1,6 +1,6 @@
 #pragma once
-#ifndef _SKTUI_PIXEL_H
-#define _SKTUI_PIXEL_H
+#ifndef _SKTUI_PIXEL_HPP_
+#define _SKTUI_PIXEL_HPP_
 
 #include <string>
 
@@ -15,4 +15,4 @@ namespace SKTUI
     };
 } 
 
-#endif // _SKTUI_PIXEL_H
+#endif // _SKTUI_PIXEL_HPP_

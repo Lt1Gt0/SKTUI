@@ -1,8 +1,8 @@
 #pragma once
-#ifndef _SKTUI_ELEMENT_BORDER_H
-#define _SKTUI_ELEMENT_BORDER_H
+#ifndef _SKTUI_ELEMENT_BORDER_HPP_
+#define _SKTUI_ELEMENT_BORDER_HPP_
 
-#include "elements/elementbase.h"
+#include "elements/elementbase.hpp"
 // #include "terminal/window.h"
 
 namespace SKTUI 
@@ -39,4 +39,4 @@ namespace SKTUI
     };
 }
 
-#endif // _SKTUI_ELEMENT_BORDER_H
+#endif // _SKTUI_ELEMENT_BORDER_HPP_

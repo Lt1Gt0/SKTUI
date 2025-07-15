@@ -1,6 +1,6 @@
 #pragma once
-#ifndef _COLOR_H
-#define _COLOR_H
+#ifndef _COLOR_HPP_
+#define _COLOR_HPP_
 
 #include <stdint.h>
 
@@ -31,4 +31,4 @@ namespace SKTUI
     };
 }
 
-#endif // _COLOR_H
+#endif // _COLOR_HPP_

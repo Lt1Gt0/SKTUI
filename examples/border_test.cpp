@@ -1,8 +1,8 @@
 #include <iostream>
-#include "sktui.h"
-#include "terminal/terminal.h"
-#include "terminal/window.h"
-#include "elements/border.h"
+#include "sktui.hpp"
+#include "terminal/terminal.hpp"
+#include "terminal/window.hpp"
+#include "elements/border.hpp"
 
 int main() {
     using namespace SKTUI;

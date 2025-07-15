@@ -1,4 +1,4 @@
-#include "terminal/terminal.h"
+#include "terminal/terminal.hpp"
 
 #include <sys/ioctl.h>
 #include <stdio.h>

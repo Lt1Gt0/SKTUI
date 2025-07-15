@@ -1,6 +1,6 @@
 #pragma once
-#ifndef _SKTUI_TERMINAL_LITERALS
-#define _SKTUI_TERMINAL_LITERALS
+#ifndef _SKTUI_TERMINAL_LITERALS_HPP_
+#define _SKTUI_TERMINAL_LITERALS_HPP_
 
 namespace SKTUI
 {
@@ -59,4 +59,4 @@ namespace SKTUI
     //
 }
 
-#endif // _SKTUI_TERMINAL_LITERALS
+#endif // _SKTUI_TERMINAL_LITERALS_HPP_

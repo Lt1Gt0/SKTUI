@@ -1,5 +1,5 @@
-#include "elements/elementbase.h"
-#include "terminal/terminal.h"
+#include "elements/elementbase.hpp"
+#include "terminal/terminal.hpp"
 
 #include <string>
 

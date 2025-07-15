@@ -1,5 +1,5 @@
-#include "sktui.h"
-#include "terminal/terminal.h"
+#include "sktui.hpp"
+#include "terminal/terminal.hpp"
 #include <iostream>
 #include <signal.h>
 #include <atomic>

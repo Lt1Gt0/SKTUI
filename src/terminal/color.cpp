@@ -1,4 +1,4 @@
-#include "terminal/color.h"
+#include "terminal/color.hpp"
 
 namespace SKTUI 
 {

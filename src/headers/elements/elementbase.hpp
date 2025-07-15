@@ -1,9 +1,9 @@
 #pragma once
-#ifndef _SKTUI_ELEMENT_BASE_H
-#define _SKTUI_ELEMENT_BASE_H
+#ifndef _SKTUI_ELEMENT_BASE_HPP_
+#define _SKTUI_ELEMENT_BASE_HPP_
 
-#include "terminal/pixel.h"
-#include "util.h"
+#include "terminal/pixel.hpp"
+#include "util.hpp"
 #include <vector>
 
 template<typename T>
@@ -37,4 +37,4 @@ namespace SKTUI
     };
 }
 
-#endif // _SKTUI_ELEMENT_BASE_H
+#endif // _SKTUI_ELEMENT_BASE_HPP_

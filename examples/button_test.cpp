@@ -1,5 +1,5 @@
 #include <iostream>
-#include "terminal/pixel.h"
+#include "terminal/pixel.hpp"
 
 int main() 
 {

@@ -1,6 +1,6 @@
 #pragma once
-#ifndef _SKTUI_UTIL_H
-#define _SKTUI_UTIL_H
+#ifndef _SKTUI_UTIL_HPP_
+#define _SKTUI_UTIL_HPP_
 
 #include <stddef.h>
 #include <stdint.h>
@@ -18,4 +18,4 @@ namespace SKTUI
     };
 }
 
-#endif // _SKTUI_UTIL_H
+#endif // _SKTUI_UTIL_HPP_

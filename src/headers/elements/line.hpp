@@ -1,8 +1,8 @@
 #pragma once
-#ifndef _SKTUI_ELEMENT_LINE_H
-#define _SKTUI_ELEMENT_LINE_H
+#ifndef _SKTUI_ELEMENT_LINE_HPP_
+#define _SKTUI_ELEMENT_LINE_HPP_
 
-#include "elements/elementbase.h"
+#include "elements/elementbase.hpp"
 
 namespace SKTUI 
 {
@@ -16,4 +16,4 @@ namespace SKTUI
     };
 }
 
-#endif // _SKTUI_ELEMENT_LINE_H
+#endif // _SKTUI_ELEMENT_LINE_HPP_

@@ -1,5 +1,5 @@
-#include "terminal/window.h"
-#include "terminal/terminal.h"
+#include "terminal/window.hpp"
+#include "terminal/terminal.hpp"
 
 #include <iostream>
 #include <sstream>

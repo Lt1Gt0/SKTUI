@@ -1,10 +1,10 @@
 #pragma once
-#ifndef _SKTUI_WINDOW_H
-#define _SKTUI_WINDOW_H
+#ifndef _SKTUI_WINDOW_HPP_
+#define _SKTUI_WINDOW_HPP_
 
-#include "util.h"
-#include "terminal/pixel.h"
-#include "elements/elementbase.h"
+#include "util.hpp"
+#include "terminal/pixel.hpp"
+#include "elements/elementbase.hpp"
 #include <vector>
 #include <string>
 #include <atomic>
@@ -49,4 +49,4 @@ namespace SKTUI
     };
 }
 
-#endif // _SKTUI_WINDOW_H
+#endif // _SKTUI_WINDOW_HPP_

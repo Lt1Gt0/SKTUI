@@ -1,6 +1,6 @@
 #pragma once
-#ifndef _SKTUI_H
-#define _SKTUI_H
+#ifndef _SKTUI_HPP_
+#define _SKTUI_HPP_
 
 namespace SKTUI 
 {
@@ -8,4 +8,4 @@ namespace SKTUI
     void Render();
 }
 
-#endif // _SKTUI_H
+#endif // _SKTUI_HPP_

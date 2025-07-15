@@ -1,4 +1,4 @@
-#include "terminal/pixel.h"
+#include "terminal/pixel.hpp"
 
 namespace SKTUI 
 {
