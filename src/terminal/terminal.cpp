@@ -44,6 +44,11 @@ namespace SKTUI
         ioctl(0, TIOCGWINSZ, &ws);
         SetSize({.X=ws.ws_col, .Y=ws.ws_row});
     }
+   
+    std::string Terminal::GetTermType()
+    {
+        return std::getenv("TERM");
+    }
 
     Point Terminal::GetSize()
     {

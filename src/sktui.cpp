@@ -1,9 +1,11 @@
 #include "sktui.hpp"
 #include "terminal/terminal.hpp"
+#include "util.hpp"
 #include <iostream>
 #include <signal.h>
 #include <atomic>
 #include <locale.h>
+#include <string>
 #include <sys/ioctl.h>
 #include <termios.h>
 #include <thread>
@@ -20,6 +22,12 @@ namespace SKTUI
 
     void Init()
     {
+        std::string termType = Terminal::GetInstance()->GetTermType();
+        if (!IsSupportedTermType(termType)) {
+            std::cerr << "Terminal Type [" << termType << "] has not been tested... Possible errors may occur\n";
+            exit(1);
+        }
+
         Terminal::GetInstance()->SetTerminalAttributes();
         std::atexit(CleanSKTUI);
     }

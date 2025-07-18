@@ -5,7 +5,7 @@
 #include "util.hpp"
 #include "terminal/window.hpp"
 
-#include <vector>
+#include <string>
 #include <unordered_map>
 #include <termios.h>
 
@@ -23,6 +23,8 @@ namespace SKTUI
 
             Point GetSize();
             void SetSize(Point newSize);
+
+            std::string GetTermType();
 
             void SetTerminalAttributes();
             void SetTerminalAttributes(termios newTerm);
