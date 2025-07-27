@@ -71,7 +71,18 @@ namespace SKTUI
        term.c_cflag &= ~(CSIZE | PARENB);
        term.c_cflag |= CS8;
 
+       term.c_cc[VMIN] = 0;
+
+       // 100ms timeout on read()
+       term.c_cc[VTIME] = 1; 
+
        SetTerminalAttributes(term);
+
+        // Enable mouse tracking
+        // 1003 = any movement
+        // 1000 = click
+        std::cout << "\033[?1003h\033[?1006h"; // 1006 = SGR mode (modern terminals)
+        std::cout.flush();    
     }
 
     void Terminal::SetTerminalAttributes(termios newTerm)

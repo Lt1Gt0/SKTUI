@@ -18,15 +18,16 @@ namespace SKTUI
     static void CleanSKTUI()
     {
         Terminal::GetInstance()->ResetTerminalAttributes();
+
+        // Disable mouse move tracking
+        std::cout << "\x1B[?1003l";
     }
 
     void Init()
     {
         std::string termType = Terminal::GetInstance()->GetTermType();
-        if (!IsSupportedTermType(termType)) {
+        if (!IsSupportedTermType(termType))
             std::cerr << "Terminal Type [" << termType << "] has not been tested... Possible errors may occur\n";
-            exit(1);
-        }
 
         Terminal::GetInstance()->SetTerminalAttributes();
         std::atexit(CleanSKTUI);
@@ -37,7 +38,7 @@ namespace SKTUI
         Terminal* t = Terminal::GetInstance();
         while (1) {
             // ANSI escape code to clear screen and move cursor to top-left
-            std::cout << "\033[2J\033[H";
+            std::cout << "\x1B[2J\x1B[H";
 
             for (auto it = t->mWindows.begin(); it != t->mWindows.end(); it++) {
                 it->second.Draw();
