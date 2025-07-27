@@ -1,5 +1,7 @@
 #include "sktui.hpp"
 #include "terminal/terminal.hpp"
+#include "terminal/mouse.hpp"
+
 #include "util.hpp"
 #include <iostream>
 #include <signal.h>
@@ -20,7 +22,9 @@ namespace SKTUI
         Terminal::GetInstance()->ResetTerminalAttributes();
 
         // Disable mouse move tracking
-        std::cout << "\x1B[?1003l";
+        char xterm_set_buf[20];
+        sprintf(xterm_set_buf, "\x1B[?%dl", XTERM_SET_ANY_EVENT_MOUSE);
+        std::cout << xterm_set_buf;
     }
 
     void Init()
@@ -38,7 +42,8 @@ namespace SKTUI
         Terminal* t = Terminal::GetInstance();
         while (1) {
             // ANSI escape code to clear screen and move cursor to top-left
-            std::cout << "\x1B[2J\x1B[H";
+            std::cout << "\x1B[2J"; // Erase screen
+            std::cout << "\x1B[H"; // Move cursor to 0,0
 
             for (auto it = t->mWindows.begin(); it != t->mWindows.end(); it++) {
                 it->second.Draw();

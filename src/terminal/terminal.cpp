@@ -1,14 +1,14 @@
 #include "terminal/terminal.hpp"
 
+#include "terminal/mouse.hpp"
+
 #include <sys/ioctl.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include <string.h>
 #include <signal.h>
-
 #include <iostream>
-#include <vector>
+
 
 namespace SKTUI
 {
@@ -79,9 +79,12 @@ namespace SKTUI
        SetTerminalAttributes(term);
 
         // Enable mouse tracking
-        // 1003 = any movement
-        // 1000 = click
-        std::cout << "\033[?1003h\033[?1006h"; // 1006 = SGR mode (modern terminals)
+        char xterm_set_buf[20];
+        sprintf(xterm_set_buf, "\x1B[?%dl\x1B[?%dh",
+                XTERM_SET_ANY_EVENT_MOUSE,
+                XTERM_SET_SGR_EXT_MODE_MOUSE);
+
+        std::cout << xterm_set_buf;
         std::cout.flush();    
     }
 

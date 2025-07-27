@@ -3,7 +3,6 @@
 #define _SKTUI_ELEMENT_BORDER_HPP_
 
 #include "elements/elementbase.hpp"
-// #include "terminal/window.h"
 
 namespace SKTUI 
 {

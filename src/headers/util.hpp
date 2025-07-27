@@ -26,8 +26,11 @@ namespace SKTUI
     // programming I will update this
     inline vector<string> GetSupportedTerminals()
     {
+        // Tmux terminals are supported for mouse inputs
+        // X10 does not have compatability with this program
         return vector<string> {
             "tmux-256color",
+            "xterm-256color",
         };
     }
 
